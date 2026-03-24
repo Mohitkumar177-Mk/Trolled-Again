@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Trolled Again</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="app-shell">
+    <section class="screen active" id="homeScreen">
+      <div class="home-topbar">
+        <button class="icon-btn" id="profileBtn" type="button">ME</button>
+        <div class="brand-block">
+          <p class="eyebrow">Troll Platformer</p>
+          <h1 id="brandTitle">Trolled Again</h1>
+        </div>
+        <button class="icon-btn" id="homeSettingsBtn" type="button">&#9881;</button>
+      </div>
+
+      <div class="level-preview-card">
+        <div class="preview-meta">
+          <div>
+            <p class="meta-label">Next Level</p>
+            <h2 id="homeLevelTitle">Level 1</h2>
+          </div>
+          <div class="coin-pill" id="homeCoins">0 Coins</div>
+        </div>
+        <div class="preview-stage">
+          <div class="preview-platform left"></div>
+          <div class="preview-spikes"></div>
+          <div class="preview-platform right"></div>
+          <div class="preview-door"></div>
+        </div>
+        <p class="preview-copy" id="homeSubtitle">'Mohit Kumar', are you ready to get trolled ?</p>
+        <button class="primary-btn play-btn" id="startGameBtn" type="button">Play</button>
+      </div>
+
+      <div class="bottom-nav">
+        <button class="nav-btn active" id="homeNavBtn" type="button">Home</button>
+        <button class="nav-btn" id="levelsNavBtn" type="button">Levels</button>
+        <button class="nav-btn" id="shopNavBtn" type="button">Shop</button>
+        <button class="nav-btn" id="settingsNavBtn" type="button">Settings</button>
+      </div>
+    </section>
+
+    <section class="screen" id="profileScreen">
+      <div class="simple-topbar">
+        <button class="back-btn" data-back="home" type="button">Home</button>
+        <h2 id="profileTitle">Profile</h2>
+        <div></div>
+      </div>
+      <section class="panel">
+        <h3 id="nicknameTitle">Nickname</h3>
+        <input class="profile-input" id="nicknameInput" type="text" maxlength="20" placeholder="Enter nickname">
+      </section>
+      <section class="panel">
+        <h3 id="avatarTitle">Choose Avatar</h3>
+        <div class="avatar-grid" id="avatarGrid"></div>
+      </section>
+      <section class="panel">
+        <button class="primary-btn save-profile-btn" id="saveProfileBtn" type="button">Save Profile</button>
+      </section>
+    </section>
+
+    <section class="screen" id="levelsScreen">
+      <div class="simple-topbar">
+        <button class="back-btn" data-back="home" type="button">Home</button>
+        <h2 id="levelsTitle">Levels</h2>
+        <div class="coin-pill" id="levelsStatus">1/25 Open</div>
+      </div>
+      <section class="panel">
+        <p class="levels-help" id="levelsHelp">Complete the previous level to unlock the next one.</p>
+        <button class="primary-btn create-level-btn" id="createLevelBtn" type="button">Create Level</button>
+        <div class="levels-grid" id="levelsGrid"></div>
+      </section>
+    </section>
+
+    <section class="screen" id="shopScreen">
+      <div class="simple-topbar">
+        <button class="back-btn" data-back="home" type="button">Home</button>
+        <h2 id="shopTitle">Shop</h2>
+        <div class="coin-pill" id="shopCoins">0 Coins</div>
+      </div>
+      <section class="panel">
+        <h3 id="charactersTitle">Characters</h3>
+        <div class="shop-grid" id="characterShop"></div>
+      </section>
+      <section class="panel">
+        <h3 id="clothesTitle">Clothes</h3>
+        <div class="shop-grid" id="clothesShop"></div>
+      </section>
+    </section>
+
+    <section class="screen" id="settingsScreen">
+      <div class="simple-topbar">
+        <button class="back-btn" data-back="home" type="button">Home</button>
+        <h2 id="settingsTitle">Settings</h2>
+        <div></div>
+      </div>
+      <section class="panel settings-panel">
+        <div class="setting-row">
+          <div>
+            <h3 id="soundTitle">Sound</h3>
+            <p id="soundDesc">Funny death sound on/off</p>
+          </div>
+          <button class="toggle-btn" id="soundToggle" type="button">On</button>
+        </div>
+        <div class="setting-row">
+          <div>
+            <h3 id="musicTitle">Music</h3>
+            <p id="musicDesc">Retro background music on/off</p>
+          </div>
+          <button class="toggle-btn" id="musicToggle" type="button">On</button>
+        </div>
+      </section>
+    </section>
+
+    <section class="screen" id="gameScreen">
+      <div class="game-topbar">
+        <button class="back-btn" id="gameHomeBtn" type="button">Home</button>
+        <div class="game-meta">
+          <p class="eyebrow" id="gameEyebrow">Invisible Trap Pack</p>
+          <h2 id="levelTitle">Level 1</h2>
+        </div>
+        <div class="top-stats">
+          <div class="mini-stat"><span id="coinsLabel">Coins</span><strong id="gameCoins">0</strong></div>
+          <div class="mini-stat"><span id="deathsLabel">Deaths</span><strong id="gameDeaths">0</strong></div>
+        </div>
+      </div>
+
+      <div class="lives-row" id="livesRow"></div>
+
+      <section class="game-panel">
+        <canvas id="gameCanvas" width="960" height="540"></canvas>
+        <div class="editor-scroll-wrapper hidden" id="editorScrollWrapper">
+          <div class="editor-scroll-meta">
+            <span>Editor View</span>
+            <strong id="editorScrollLabel">View: 0px / 5000px</strong>
+          </div>
+          <input type="range" id="editorScroll" min="0" max="4040" value="0">
+        </div>
+        <div class="overlay" id="overlay">
+          <div class="overlay-card">
+            <h2 id="overlayTitle">Ready?</h2>
+            <p id="overlayText">'Mohit Kumar', are you ready to get trolled ?</p>
+            <div class="overlay-actions" id="overlayActions">
+              <button class="primary-btn" id="primaryButton" type="button">Play</button>
+              <button class="secondary-btn" id="secondaryButton" type="button">Home</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="controls-panel">
+        <div class="controls-row">
+          <button class="control-btn" data-action="left" type="button">&#9664;</button>
+          <button class="control-btn" data-action="right" type="button">&#9654;</button>
+        </div>
+        <div class="controls-row">
+          <button class="control-btn jump" data-action="jump" type="button">&#9650;</button>
+          <button class="control-btn retry" id="retryBtn" type="button">Retry</button>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <script src="game.js"></script>
+</body>
+</html>
+
