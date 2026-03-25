@@ -3283,3 +3283,18 @@ if (document.readyState === "loading") {
 } else {
   initApp();
 }
+function checkOrientation() {
+  const warning = document.getElementById("rotateWarning");
+  const canvas = document.getElementById("gameCanvas");
+
+  if (window.innerHeight > window.innerWidth) {
+    warning.style.display = "flex";
+    canvas.style.display = "none";
+  } else {
+    warning.style.display = "none";
+    canvas.style.display = "block";
+  }
+}
+
+window.addEventListener("resize", checkOrientation);
+window.addEventListener("load", checkOrientation);
