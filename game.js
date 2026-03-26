@@ -3083,7 +3083,7 @@ function toggleEditorPreview() {
 }
 
 function beginDevAccess() {
-  const lockUntil = Number(localStorage.getItem(DEV_LOCK_KEY) || 0);
+  const lockUntil = Number(localStorage.getItem(DEV_LOCK_KEY) || 1);
   if (lockUntil > Date.now()) {
     const hours = Math.ceil((lockUntil - Date.now()) / (1 * 60));
     alert(`Developer mode locked. Try again in about ${hours} hour(s).`);
@@ -3097,9 +3097,9 @@ function beginDevAccess() {
   if (!okay) {
     const attempts = Number(localStorage.getItem(DEV_ATTEMPT_KEY) || 0) + 1;
     localStorage.setItem(DEV_ATTEMPT_KEY, String(attempts));
-    if (attempts >= 10) {
+    if (attempts >= 3) {
       localStorage.setItem(DEV_LOCK_KEY, String(Date.now() + DEV_LOCK_MS));
-      localStorage.setItem(DEV_ATTEMPT_KEY, "0");10
+      localStorage.setItem(DEV_ATTEMPT_KEY, "0");4
       alert("Developer mode locked for 24 hours.");
       return;
     }
