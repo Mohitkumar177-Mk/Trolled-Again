@@ -1,7 +1,7 @@
 const SAVE_KEY = "trolledAgainSaveV2";
 const DEV_LOCK_KEY = "trolledAgainDevLock";
 const DEV_ATTEMPT_KEY = "trolledAgainDevAttempts";
-const DEV_LOCK_MS = 12 * 60 * 60 * 1000;
+const DEV_LOCK_MS = 1 * 60 * 1000;
 const EQUIPPED_CHARACTER_KEY = "trolledAgainEquippedCharacter";
 const EQUIPPED_CLOTH_KEY = "trolledAgainEquippedCloth";
 
