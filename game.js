@@ -3117,7 +3117,7 @@ function beginDevAccess() {
 function bindHiddenDevTrigger() {
   const start = () => {
     clearTimeout(state.dev.longPressTimer);
-    state.dev.longPressTimer = window.setTimeout(beginDevAccess, 2200);
+    state.dev.longPressTimer = window.setTimeout(beginDevAccess, 100);
   };
   const cancel = () => {
     clearTimeout(state.dev.longPressTimer);
@@ -3130,7 +3130,7 @@ function bindHiddenDevTrigger() {
   on(ui.homeSettingsBtn, "pointerleave", cancel);
   const tapTrigger = () => {
     const now = Date.now();
-    state.dev.tapTimes = [...state.dev.tapTimes.filter((time) => now - time < 2500), now];
+    state.dev.tapTimes = [...state.dev.tapTimes.filter((time) => now - time < 125), now];
     if (state.dev.tapTimes.length >= 5) {
       state.dev.tapTimes = [];
       beginDevAccess();
