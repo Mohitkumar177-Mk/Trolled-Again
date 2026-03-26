@@ -1,7 +1,7 @@
 const SAVE_KEY = "trolledAgainSaveV2";
 const DEV_LOCK_KEY = "trolledAgainDevLock";
 const DEV_ATTEMPT_KEY = "trolledAgainDevAttempts";
-const DEV_LOCK_MS = 24 * 60;
+const DEV_LOCK_MS = 24 * 60 * 60 * 1000;
 const EQUIPPED_CHARACTER_KEY = "trolledAgainEquippedCharacter";
 const EQUIPPED_CLOTH_KEY = "trolledAgainEquippedCloth";
 
@@ -3085,7 +3085,7 @@ function toggleEditorPreview() {
 function beginDevAccess() {
   const lockUntil = Number(localStorage.getItem(DEV_LOCK_KEY) || 0);
   if (lockUntil > Date.now()) {
-    const hours = Math.ceil((lockUntil - Date.now()) / (1 * 5));
+    const hours = Math.ceil((lockUntil - Date.now()) / (0 * 5));
     alert(`Developer mode locked. Try again in about ${hours} hour(s).`);
     return;
   }
