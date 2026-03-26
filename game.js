@@ -1,7 +1,7 @@
 const SAVE_KEY = "trolledAgainSaveV2";
 const DEV_LOCK_KEY = "trolledAgainDevLock";
 const DEV_ATTEMPT_KEY = "trolledAgainDevAttempts";
-const DEV_LOCK_MS = 24 * 60 * 1000;
+const DEV_LOCK_MS = 24 * 60 *60 * 1000;
 const EQUIPPED_CHARACTER_KEY = "trolledAgainEquippedCharacter";
 const EQUIPPED_CLOTH_KEY = "trolledAgainEquippedCloth";
 
@@ -3085,7 +3085,7 @@ function toggleEditorPreview() {
 function beginDevAccess() {
   const lockUntil = Number(localStorage.getItem(DEV_LOCK_KEY) || 0);
   if (lockUntil > Date.now()) {
-    const hours = Math.ceil((lockUntil - Date.now()) / (0 * 60 * 60));
+    const hours = Math.ceil((lockUntil - Date.now()) / (1000 * 60 * 60));
     alert(`Developer mode locked. Try again in about ${hours} hour(s).`);
     return;
   }
@@ -3100,7 +3100,7 @@ function beginDevAccess() {
     if (attempts >= 3) {
       localStorage.setItem(DEV_LOCK_KEY, String(Date.now() + DEV_LOCK_MS));
       localStorage.setItem(DEV_ATTEMPT_KEY, "0");
-      alert("Developer mode locked for 3 hours.");
+      alert("Developer mode locked for 24 hours.");
       return;
     }
     alert(`Wrong credentials. ${3 - attempts} attempt(s) left.`);
@@ -3117,7 +3117,7 @@ function beginDevAccess() {
 function bindHiddenDevTrigger() {
   const start = () => {
     clearTimeout(state.dev.longPressTimer);
-    state.dev.longPressTimer = window.setTimeout(beginDevAccess, 100);
+    state.dev.longPressTimer = window.setTimeout(beginDevAccess, 2000);
   };
   const cancel = () => {
     clearTimeout(state.dev.longPressTimer);
@@ -3130,7 +3130,7 @@ function bindHiddenDevTrigger() {
   on(ui.homeSettingsBtn, "pointerleave", cancel);
   const tapTrigger = () => {
     const now = Date.now();
-    state.dev.tapTimes = [...state.dev.tapTimes.filter((time) => now - time < 125), now];
+    state.dev.tapTimes = [...state.dev.tapTimes.filter((time) => now - time < 2500), now];
     if (state.dev.tapTimes.length >= 5) {
       state.dev.tapTimes = [];
       beginDevAccess();
