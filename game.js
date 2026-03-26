@@ -1,7 +1,7 @@
 const SAVE_KEY = "trolledAgainSaveV2";
 const DEV_LOCK_KEY = "trolledAgainDevLock";
 const DEV_ATTEMPT_KEY = "trolledAgainDevAttempts";
-const DEV_LOCK_MS = 1 * 60 * 1000;
+const DEV_LOCK_MS = 24 * 60 * 60 * 1000;
 const EQUIPPED_CHARACTER_KEY = "trolledAgainEquippedCharacter";
 const EQUIPPED_CLOTH_KEY = "trolledAgainEquippedCloth";
 
@@ -3085,7 +3085,7 @@ function toggleEditorPreview() {
 function beginDevAccess() {
   const lockUntil = Number(localStorage.getItem(DEV_LOCK_KEY) || 0);
   if (lockUntil > Date.now()) {
-    const hours = Math.ceil((lockUntil - Date.now()) / (1 * 60 * 60));
+    const hours = Math.ceil((lockUntil - Date.now()) / (12 * 60 * 60));
     alert(`Developer mode locked. Try again in about ${hours} hour(s).`);
     return;
   }
@@ -3097,13 +3097,13 @@ function beginDevAccess() {
   if (!okay) {
     const attempts = Number(localStorage.getItem(DEV_ATTEMPT_KEY) || 0) + 1;
     localStorage.setItem(DEV_ATTEMPT_KEY, String(attempts));
-    if (attempts >= 10) {
+    if (attempts >= 3) {
       localStorage.setItem(DEV_LOCK_KEY, String(Date.now() + DEV_LOCK_MS));
       localStorage.setItem(DEV_ATTEMPT_KEY, "0");
-      alert("Developer mode locked for 1 hours.");
+      alert("Developer mode locked for 3 hours.");
       return;
     }
-    alert(`Wrong credentials. ${10 - attempts} attempt(s) left.`);
+    alert(`Wrong credentials. ${3 - attempts} attempt(s) left.`);
     return;
   }
   localStorage.setItem(DEV_ATTEMPT_KEY, "0");
