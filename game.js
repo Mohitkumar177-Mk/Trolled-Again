@@ -3085,7 +3085,7 @@ function toggleEditorPreview() {
 function beginDevAccess() {
   const lockUntil = Number(localStorage.getItem(DEV_LOCK_KEY) || 0);
   if (lockUntil > Date.now()) {
-    const hours = Math.ceil((lockUntil - Date.now()) / (12 * 60 * 60));
+    const hours = Math.ceil((lockUntil - Date.now()) / (0 * 60 * 60));
     alert(`Developer mode locked. Try again in about ${hours} hour(s).`);
     return;
   }
