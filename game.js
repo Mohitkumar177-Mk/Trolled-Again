@@ -3097,13 +3097,13 @@ function beginDevAccess() {
   if (!okay) {
     const attempts = Number(localStorage.getItem(DEV_ATTEMPT_KEY) || 0) + 1;
     localStorage.setItem(DEV_ATTEMPT_KEY, String(attempts));
-    if (attempts >= 3) {
+    if (attempts >= 10) {
       localStorage.setItem(DEV_LOCK_KEY, String(Date.now() + DEV_LOCK_MS));
       localStorage.setItem(DEV_ATTEMPT_KEY, "0");
       alert("Developer mode locked for 1 hours.");
       return;
     }
-    alert(`Wrong credentials. ${3 - attempts} attempt(s) left.`);
+    alert(`Wrong credentials. ${10 - attempts} attempt(s) left.`);
     return;
   }
   localStorage.setItem(DEV_ATTEMPT_KEY, "0");
