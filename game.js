@@ -3083,6 +3083,10 @@ function toggleEditorPreview() {
 }
 
 function beginDevAccess() {
+  function beginDevAccess() {
+  localStorage.removeItem(DEV_LOCK_KEY); // <--- Sirf ye line add karein
+  const lockUntil = Number(localStorage.getItem(DEV_LOCK_KEY) || 0);
+  // ... baaki pura code same rehne dein
   const lockUntil = Number(localStorage.getItem(DEV_LOCK_KEY) || 0);
   if (lockUntil > Date.now()) {
     const hours = Math.ceil((lockUntil - Date.now()) / (1000 * 60 * 60));
