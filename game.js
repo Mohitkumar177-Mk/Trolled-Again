@@ -1,7 +1,7 @@
 const SAVE_KEY = "trolledAgainSaveV2";
 const DEV_LOCK_KEY = "trolledAgainDevLock";
 const DEV_ATTEMPT_KEY = "trolledAgainDevAttempts";
-const DEV_LOCK_MS = 24 * 60 *60 * 1000;
+const DEV_LOCK_MS = 24 * 60 * 60 * 1000;
 const EQUIPPED_CHARACTER_KEY = "trolledAgainEquippedCharacter";
 const EQUIPPED_CLOTH_KEY = "trolledAgainEquippedCloth";
 
@@ -3117,7 +3117,7 @@ function beginDevAccess() {
 function bindHiddenDevTrigger() {
   const start = () => {
     clearTimeout(state.dev.longPressTimer);
-    state.dev.longPressTimer = window.setTimeout(beginDevAccess, 2000);
+    state.dev.longPressTimer = window.setTimeout(beginDevAccess, 2200);
   };
   const cancel = () => {
     clearTimeout(state.dev.longPressTimer);
